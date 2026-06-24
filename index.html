@@ -1,142 +1,524 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presente ❤️</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratório Escola do Futuro</title>
 
+<style>
+:root{
+--bg:#f4f6f9;
+--card:#ffffff;
+--text:#1e293b;
+--primary:#2563eb;
+--border:#e2e8f0;
+--shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+}
+
+header{
+background:white;
+padding:20px 30px;
+box-shadow:var(--shadow);
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:var(--primary);
+}
+
+.gear{
+font-size:32px;
+cursor:pointer;
+transition:.3s;
+}
+
+.gear:hover{
+transform:rotate(90deg);
+}
+
+.container{
+padding:25px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.stat{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:var(--shadow);
+}
+
+.stat h3{
+font-size:15px;
+color:#64748b;
+}
+
+.stat h1{
+margin-top:10px;
+font-size:35px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:var(--shadow);
+}
+
+.card h2{
+margin-bottom:15px;
+color:var(--primary);
+}
+
+.equipamentos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+.eq{
+padding:20px;
+border-radius:16px;
+color:white;
+font-weight:bold;
+text-align:center;
+}
+
+.chrome{background:#2563eb;}
+.tablet{background:#16a34a;}
+.oculos{background:#9333ea;}
+.caneta{background:#ea580c;}
+.pufes{background:#0891b2;}
+.lab{background:#475569;}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:8px;
+margin-bottom:10px;
+border:1px solid #dbe2ea;
+border-radius:10px;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th{
+background:#2563eb;
+color:white;
+padding:10px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #e5e7eb;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:white;
+padding:30px;
+width:500px;
+max-width:95%;
+border-radius:20px;
+}
+
+.close{
+float:right;
+font-size:24px;
+cursor:pointer;
+}
+
+.badge{
+padding:5px 10px;
+border-radius:20px;
+background:#16a34a;
+color:white;
+font-size:12px;
+}
+
+ul{
+padding-left:20px;
+}
+
+@media(max-width:900px){
+.grid{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
 <body>
 
-    <header>
-        <h1>minha madrinha</h1>
-        <p>Desculpa ter demorado para entregar.</p>
-    </header>
+<header>
+<div class="logo">🚀 Laboratório Escola do Futuro</div>
+<div class="gear" onclick="abrirLogin()">⚙️</div>
+</header>
 
-    <section id="contador">
+<div class="container">
 
-        <div class="contador-box">
+<div class="stats">
 
-            <h2>Te ESCOLHI Há</h2>
+<div class="stat">
+<h3>Equipamentos</h3>
+<h1 id="equipTotal">53</h1>
+</div>
 
-            <div class="contador-caixas">
+<div class="stat">
+<h3>Empréstimos Hoje</h3>
+<h1 id="emprestimosTotal">0</h1>
+</div>
 
-                <div class="caixa">
-                    <span id="anos">0</span>
-                    <p>Anos</p>
-                </div>
+<div class="stat">
+<h3>Professores</h3>
+<h1 id="profTotal">0</h1>
+</div>
 
-                <div class="caixa">
-                    <span id="meses">0</span>
-                    <p>Meses</p>
-                </div>
+<div class="stat">
+<h3>Avisos</h3>
+<h1 id="avisosTotal">3</h1>
+</div>
 
-                <div class="caixa">
-                    <span id="dias">0</span>
-                    <p>Dias</p>
-                </div>
+</div>
 
-                <div class="caixa">
-                    <span id="horas">0</span>
-                    <p>Horas</p>
-                </div>
+<div class="grid">
 
-                <div class="caixa">
-                    <span id="minutos">0</span>
-                    <p>Minutos</p>
-                </div>
+<div>
 
-                <div class="caixa">
-                    <span id="segundos">0</span>
-                    <p>Segundos</p>
-                </div>
+<div class="card">
+<h2>📢 Avisos</h2>
 
-            </div>
+<ul>
+<li>Manutenção dos tablets sexta-feira.</li>
+<li>Oficina de impressão 3D às 14h.</li>
+<li>Reservar equipamentos com antecedência.</li>
+</ul>
 
-        </div>
+</div>
 
-    </section>
+<br>
 
-    <div class="musica-container">
+<div class="card">
 
-        <button id="revelarBtn" class="revelar">
-            Revelar Música 🎵
-        </button>
+<h2>📋 Histórico de Empréstimos</h2>
 
-    </div>
+<table>
 
-    <div id="spotify" style="display: none;">
+<thead>
+<tr>
+<th>Professor</th>
+<th>Turma</th>
+<th>Equipamento</th>
+<th>Qtd</th>
+</tr>
+</thead>
 
-        <iframe
-            style="border-radius:12px"
-            src="https://open.spotify.com/embed/track/5yEais1zgeW1MjLrx7tsie"
-            width="50%"
-            height="152"
-            frameborder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
-        </iframe>
+<tbody id="historico"></tbody>
 
-    </div>
+</table>
 
-    <section class="linha-do-tempo">
+</div>
 
-        <h2> o PORQUE</h2>
+</div>
 
-        <div class="evento">
+<div>
 
-            <div class="bolinha"></div>
+<div class="card">
 
-            <div class="texto">
+<h2>💻 Equipamentos</h2>
 
-                <h3>test 1</h3>
+<div class="equipamentos">
 
-                <p>
-                    texto 1
-                </p>
+<div class="eq chrome">
+💻<br>
+Chromebooks<br>
+20
+</div>
 
-            </div>
+<div class="eq tablet">
+📱<br>
+Tablets<br>
+15
+</div>
 
-        </div>
+<div class="eq oculos">
+🥽<br>
+Óculos 3D<br>
+6
+</div>
 
-        <div class="evento">
+<div class="eq caneta">
+✏️<br>
+Canetas 3D<br>
+5
+</div>
 
-            <div class="bolinha"></div>
+<div class="eq pufes">
+🛋️<br>
+Pufes<br>
+10
+</div>
 
-            <div class="texto">
+<div class="eq lab">
+🔬<br>
+Laboratório<br>
+Livre
+</div>
 
-                <h3> text 2</h3></h3>
+</div>
 
-                <p>
-                 segundo texto
-                </p>
+</div>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-        <div class="evento">
+</div>
 
-            <div class="bolinha"></div>
+<!-- LOGIN -->
 
-            <div class="texto">
+<div class="modal" id="loginModal">
 
-                <h3>texto 3</h3>
+<div class="modal-content">
 
-                <p>texto 3
-                </p>
+<span class="close" onclick="fecharLogin()">×</span>
 
-            </div>
+<h2>Área Administrativa</h2>
 
-        </div>
+<input
+type="password"
+id="senha"
+placeholder="Digite a senha">
 
-    </section>
+<button onclick="verificarSenha()">
+Entrar
+</button>
 
-    <script src="script.js"></script>
+</div>
+
+</div>
+
+<!-- ADMIN -->
+
+<div class="modal" id="adminModal">
+
+<div class="modal-content">
+
+<span class="close" onclick="fecharAdmin()">×</span>
+
+<h2>Painel Administrativo</h2>
+
+<input id="professor" placeholder="Professor">
+
+<input id="turma" placeholder="Turma">
+
+<select id="equipamento">
+<option>Chromebooks</option>
+<option>Tablets</option>
+<option>Óculos 3D</option>
+<option>Canetas 3D</option>
+<option>Pufes</option>
+</select>
+
+<input
+id="quantidade"
+type="number"
+placeholder="Quantidade">
+
+<button onclick="registrar()">
+Registrar Empréstimo
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let historico =
+JSON.parse(localStorage.getItem("historico")) || [];
+
+function abrirLogin(){
+document.getElementById("loginModal").style.display="flex";
+}
+
+function fecharLogin(){
+document.getElementById("loginModal").style.display="none";
+}
+
+function verificarSenha(){
+
+let senha =
+document.getElementById("senha").value;
+
+if(senha==="1212"){
+
+fecharLogin();
+
+document.getElementById("adminModal")
+.style.display="flex";
+
+}else{
+
+alert("Senha incorreta");
+
+}
+
+}
+
+function fecharAdmin(){
+
+document.getElementById("adminModal")
+.style.display="none";
+
+}
+
+function registrar(){
+
+let professor =
+document.getElementById("professor").value;
+
+let turma =
+document.getElementById("turma").value;
+
+let equipamento =
+document.getElementById("equipamento").value;
+
+let quantidade =
+document.getElementById("quantidade").value;
+
+if(
+!professor ||
+!turma ||
+!quantidade
+){
+alert("Preencha todos os campos");
+return;
+}
+
+historico.push({
+professor,
+turma,
+equipamento,
+quantidade
+});
+
+localStorage.setItem(
+"historico",
+JSON.stringify(historico)
+);
+
+render();
+
+document.getElementById("professor").value="";
+document.getElementById("turma").value="";
+document.getElementById("quantidade").value="";
+
+alert("Registro salvo!");
+
+}
+
+function render(){
+
+let html="";
+
+historico.forEach(item=>{
+
+html += `
+<tr>
+<td>${item.professor}</td>
+<td>${item.turma}</td>
+<td>${item.equipamento}</td>
+<td>
+<span class="badge">
+${item.quantidade}
+</span>
+</td>
+</tr>
+`;
+
+});
+
+document.getElementById("historico").innerHTML =
+html;
+
+document.getElementById("emprestimosTotal")
+.innerText = historico.length;
+
+let professores =
+new Set(
+historico.map(
+x=>x.professor
+)
+);
+
+document.getElementById("profTotal")
+.innerText = professores.size;
+
+}
+
+render();
+
+</script>
 
 </body>
-
 </html>
