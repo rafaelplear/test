@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laboratório Escola do Futuro</title>
+<title>Laboratório de Inovação</title>
 
 <style>
 :root{
---bg:#f4f6f9;
+--bg:#f5f7fb;
 --card:#ffffff;
 --text:#1e293b;
 --primary:#2563eb;
@@ -19,7 +19,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
+font-family:Segoe UI,Arial;
 }
 
 body{
@@ -29,119 +29,85 @@ color:var(--text);
 
 header{
 background:white;
-padding:20px 30px;
-box-shadow:var(--shadow);
+padding:18px 25px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+box-shadow:var(--shadow);
 position:sticky;
 top:0;
-z-index:100;
 }
 
 .logo{
-font-size:28px;
-font-weight:bold;
+font-size:22px;
+font-weight:700;
 color:var(--primary);
 }
 
 .gear{
-font-size:32px;
+font-size:26px;
 cursor:pointer;
 transition:.3s;
 }
-
-.gear:hover{
-transform:rotate(90deg);
-}
+.gear:hover{transform:rotate(90deg);}
 
 .container{
-padding:25px;
+padding:20px;
 }
 
 .stats{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-margin-bottom:25px;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
 }
 
 .stat{
 background:white;
-padding:20px;
-border-radius:20px;
+padding:18px;
+border-radius:16px;
 box-shadow:var(--shadow);
 }
 
-.stat h3{
-font-size:15px;
-color:#64748b;
-}
-
 .stat h1{
+font-size:30px;
 margin-top:10px;
-font-size:35px;
 }
 
 .grid{
 display:grid;
 grid-template-columns:2fr 1fr;
 gap:20px;
+margin-top:20px;
 }
 
 .card{
 background:white;
-padding:20px;
-border-radius:20px;
+padding:18px;
+border-radius:16px;
 box-shadow:var(--shadow);
 }
 
-.card h2{
-margin-bottom:15px;
+h2{
+margin-bottom:10px;
 color:var(--primary);
 }
 
-.equipamentos{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-}
-
-.eq{
-padding:20px;
-border-radius:16px;
+button{
+background:var(--primary);
 color:white;
-font-weight:bold;
-text-align:center;
+border:none;
+padding:10px;
+border-radius:10px;
+cursor:pointer;
+margin-top:5px;
 }
-
-.chrome{background:#2563eb;}
-.tablet{background:#16a34a;}
-.oculos{background:#9333ea;}
-.caneta{background:#ea580c;}
-.pufes{background:#0891b2;}
-.lab{background:#475569;}
 
 input,select{
 width:100%;
 padding:10px;
-margin-top:8px;
-margin-bottom:10px;
-border:1px solid #dbe2ea;
+margin:5px 0;
 border-radius:10px;
-}
-
-button{
-background:#2563eb;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:10px;
-cursor:pointer;
-}
-
-button:hover{
-background:#1d4ed8;
+border:1px solid var(--border);
 }
 
 table{
@@ -151,372 +117,259 @@ margin-top:10px;
 }
 
 th{
-background:#2563eb;
+background:var(--primary);
 color:white;
 padding:10px;
 }
 
 td{
 padding:10px;
-border-bottom:1px solid #e5e7eb;
+border-bottom:1px solid #eee;
 }
 
 .modal{
 display:none;
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 background:rgba(0,0,0,.5);
 justify-content:center;
 align-items:center;
-z-index:999;
 }
 
-.modal-content{
+.box{
 background:white;
-padding:30px;
-width:500px;
+padding:20px;
+border-radius:16px;
+width:400px;
 max-width:95%;
-border-radius:20px;
 }
 
 .close{
 float:right;
-font-size:24px;
 cursor:pointer;
+font-size:22px;
 }
 
 .badge{
-padding:5px 10px;
-border-radius:20px;
 background:#16a34a;
 color:white;
+padding:4px 8px;
+border-radius:10px;
 font-size:12px;
-}
-
-ul{
-padding-left:20px;
-}
-
-@media(max-width:900px){
-.grid{
-grid-template-columns:1fr;
-}
 }
 </style>
 </head>
 <body>
 
 <header>
-<div class="logo">🚀 Laboratório Escola do Futuro</div>
-<div class="gear" onclick="abrirLogin()">⚙️</div>
+<div class="logo">📚 Laboratório de Inovação</div>
+<div class="gear" onclick="openLogin()">⚙️</div>
 </header>
 
 <div class="container">
 
+<!-- STATS -->
 <div class="stats">
-
 <div class="stat">
-<h3>Equipamentos</h3>
-<h1 id="equipTotal">53</h1>
-</div>
-
-<div class="stat">
-<h3>Empréstimos Hoje</h3>
-<h1 id="emprestimosTotal">0</h1>
+<h3>Chromebooks</h3>
+<h1 id="crome">30</h1>
 </div>
 
 <div class="stat">
-<h3>Professores</h3>
-<h1 id="profTotal">0</h1>
+<h3>Tablets</h3>
+<h1 id="tablet">50</h1>
 </div>
 
 <div class="stat">
-<h3>Avisos</h3>
-<h1 id="avisosTotal">3</h1>
+<h3>Óculos 3D</h3>
+<h1 id="oculos">20</h1>
 </div>
 
+<div class="stat">
+<h3>Canetas 3D</h3>
+<h1 id="caneta">40</h1>
+</div>
 </div>
 
+<!-- GRID -->
 <div class="grid">
 
-<div>
-
+<!-- AVISOS -->
 <div class="card">
 <h2>📢 Avisos</h2>
 
-<ul>
-<li>Manutenção dos tablets sexta-feira.</li>
-<li>Oficina de impressão 3D às 14h.</li>
-<li>Reservar equipamentos com antecedência.</li>
-</ul>
+<input id="avisoTxt" placeholder="Novo aviso">
+<button onclick="addAviso()">Adicionar aviso</button>
 
+<ul id="avisos"></ul>
 </div>
 
-<br>
-
+<!-- RESERVAS -->
 <div class="card">
+<h2>📋 Reservas</h2>
 
-<h2>📋 Histórico de Empréstimos</h2>
-
-<table>
-
-<thead>
-<tr>
-<th>Professor</th>
-<th>Turma</th>
-<th>Equipamento</th>
-<th>Qtd</th>
-</tr>
-</thead>
-
-<tbody id="historico"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<div>
-
-<div class="card">
-
-<h2>💻 Equipamentos</h2>
-
-<div class="equipamentos">
-
-<div class="eq chrome">
-💻<br>
-Chromebooks<br>
-20
-</div>
-
-<div class="eq tablet">
-📱<br>
-Tablets<br>
-15
-</div>
-
-<div class="eq oculos">
-🥽<br>
-Óculos 3D<br>
-6
-</div>
-
-<div class="eq caneta">
-✏️<br>
-Canetas 3D<br>
-5
-</div>
-
-<div class="eq pufes">
-🛋️<br>
-Pufes<br>
-10
-</div>
-
-<div class="eq lab">
-🔬<br>
-Laboratório<br>
-Livre
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- LOGIN -->
-
-<div class="modal" id="loginModal">
-
-<div class="modal-content">
-
-<span class="close" onclick="fecharLogin()">×</span>
-
-<h2>Área Administrativa</h2>
-
-<input
-type="password"
-id="senha"
-placeholder="Digite a senha">
-
-<button onclick="verificarSenha()">
-Entrar
-</button>
-
-</div>
-
-</div>
-
-<!-- ADMIN -->
-
-<div class="modal" id="adminModal">
-
-<div class="modal-content">
-
-<span class="close" onclick="fecharAdmin()">×</span>
-
-<h2>Painel Administrativo</h2>
-
-<input id="professor" placeholder="Professor">
-
+<input id="prof" placeholder="Professor">
 <input id="turma" placeholder="Turma">
 
-<select id="equipamento">
+<select id="item">
 <option>Chromebooks</option>
 <option>Tablets</option>
 <option>Óculos 3D</option>
 <option>Canetas 3D</option>
-<option>Pufes</option>
 </select>
 
-<input
-id="quantidade"
-type="number"
-placeholder="Quantidade">
+<input id="qtd" type="number" placeholder="Quantidade">
 
-<button onclick="registrar()">
-Registrar Empréstimo
-</button>
+<button onclick="addReserva()">Reservar</button>
 
+<table>
+<thead>
+<tr>
+<th>Prof</th>
+<th>Turma</th>
+<th>Item</th>
+<th>Qtd</th>
+</tr>
+</thead>
+<tbody id="reservas"></tbody>
+</table>
 </div>
 
+</div>
+</div>
+
+<!-- LOGIN -->
+<div class="modal" id="login">
+<div class="box">
+<span class="close" onclick="closeLogin()">×</span>
+<h3>Área Admin</h3>
+<input type="password" id="senha" placeholder="Senha">
+<button onclick="login()">Entrar</button>
+</div>
+</div>
+
+<!-- ADMIN -->
+<div class="modal" id="admin">
+<div class="box">
+<span class="close" onclick="closeAdmin()">×</span>
+<h3>Configuração do Sistema</h3>
+
+<h4>Alterar Quantidades</h4>
+
+<input id="nCrome" type="number" placeholder="Chromebooks">
+<input id="nTablet" type="number" placeholder="Tablets">
+<input id="nOculos" type="number" placeholder="Óculos 3D">
+<input id="nCaneta" type="number" placeholder="Canetas 3D">
+
+<button onclick="salvarItens()">Salvar</button>
+
+<h4 style="margin-top:10px;">Avisos</h4>
+
+<input id="delAviso" placeholder="Remover aviso (texto)">
+<button onclick="removerAviso()">Remover</button>
+
+</div>
 </div>
 
 <script>
 
-let historico =
-JSON.parse(localStorage.getItem("historico")) || [];
+let reservas = JSON.parse(localStorage.getItem("res")) || [];
+let avisos = JSON.parse(localStorage.getItem("avisos")) || [];
 
-function abrirLogin(){
-document.getElementById("loginModal").style.display="flex";
+let estoque = {
+crome:30,
+tablet:50,
+oculos:20,
+caneta:40
+};
+
+function updateUI(){
+
+document.getElementById("crome").innerText = estoque.crome;
+document.getElementById("tablet").innerText = estoque.tablet;
+document.getElementById("oculos").innerText = estoque.oculos;
+document.getElementById("caneta").innerText = estoque.caneta;
+
+let a="";
+avisos.forEach(v=>{
+a+=`<li>${v}</li>`;
+});
+document.getElementById("avisos").innerHTML=a;
+
+let r="";
+reservas.forEach(v=>{
+r+=`<tr>
+<td>${v.prof}</td>
+<td>${v.turma}</td>
+<td>${v.item}</td>
+<td><span class="badge">${v.qtd}</span></td>
+</tr>`;
+});
+document.getElementById("reservas").innerHTML=r;
 }
 
-function fecharLogin(){
-document.getElementById("loginModal").style.display="none";
+function addAviso(){
+let v=document.getElementById("avisoTxt").value;
+if(!v) return;
+avisos.push(v);
+localStorage.setItem("avisos",JSON.stringify(avisos));
+document.getElementById("avisoTxt").value="";
+updateUI();
 }
 
-function verificarSenha(){
+function removerAviso(){
+let v=document.getElementById("delAviso").value;
+avisos=avisos.filter(a=>a!==v);
+localStorage.setItem("avisos",JSON.stringify(avisos));
+updateUI();
+}
 
-let senha =
-document.getElementById("senha").value;
+function addReserva(){
+let prof=document.getElementById("prof").value;
+let turma=document.getElementById("turma").value;
+let item=document.getElementById("item").value;
+let qtd=document.getElementById("qtd").value;
 
-if(senha==="1212"){
+if(!prof||!turma||!qtd) return;
 
-fecharLogin();
+reservas.push({prof,turma,item,qtd});
+localStorage.setItem("res",JSON.stringify(reservas));
 
-document.getElementById("adminModal")
-.style.display="flex";
+updateUI();
+}
 
+function openLogin(){
+document.getElementById("login").style.display="flex";
+}
+
+function closeLogin(){
+document.getElementById("login").style.display="none";
+}
+
+function login(){
+let s=document.getElementById("senha").value;
+if(s==="1212"){
+closeLogin();
+document.getElementById("admin").style.display="flex";
 }else{
-
-alert("Senha incorreta");
-
+alert("Senha errada");
+}
 }
 
+function closeAdmin(){
+document.getElementById("admin").style.display="none";
 }
 
-function fecharAdmin(){
-
-document.getElementById("adminModal")
-.style.display="none";
-
+function salvarItens(){
+estoque.crome=document.getElementById("nCrome").value||estoque.crome;
+estoque.tablet=document.getElementById("nTablet").value||estoque.tablet;
+estoque.oculos=document.getElementById("nOculos").value||estoque.oculos;
+estoque.caneta=document.getElementById("nCaneta").value||estoque.caneta;
+updateUI();
+alert("Atualizado!");
 }
 
-function registrar(){
-
-let professor =
-document.getElementById("professor").value;
-
-let turma =
-document.getElementById("turma").value;
-
-let equipamento =
-document.getElementById("equipamento").value;
-
-let quantidade =
-document.getElementById("quantidade").value;
-
-if(
-!professor ||
-!turma ||
-!quantidade
-){
-alert("Preencha todos os campos");
-return;
-}
-
-historico.push({
-professor,
-turma,
-equipamento,
-quantidade
-});
-
-localStorage.setItem(
-"historico",
-JSON.stringify(historico)
-);
-
-render();
-
-document.getElementById("professor").value="";
-document.getElementById("turma").value="";
-document.getElementById("quantidade").value="";
-
-alert("Registro salvo!");
-
-}
-
-function render(){
-
-let html="";
-
-historico.forEach(item=>{
-
-html += `
-<tr>
-<td>${item.professor}</td>
-<td>${item.turma}</td>
-<td>${item.equipamento}</td>
-<td>
-<span class="badge">
-${item.quantidade}
-</span>
-</td>
-</tr>
-`;
-
-});
-
-document.getElementById("historico").innerHTML =
-html;
-
-document.getElementById("emprestimosTotal")
-.innerText = historico.length;
-
-let professores =
-new Set(
-historico.map(
-x=>x.professor
-)
-);
-
-document.getElementById("profTotal")
-.innerText = professores.size;
-
-}
-
-render();
+updateUI();
 
 </script>
 
